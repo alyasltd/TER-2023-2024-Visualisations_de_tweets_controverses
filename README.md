@@ -10,4 +10,3 @@
  - Alya Zouzou : alya.zouzou@etu.univ-montp3.fr
  - Maeva Maïo : maeva.maio@etu.univ-montp3.fr
  - Houria Saya : sayahouria@gmail.com
-
