@@ -9,7 +9,7 @@ Pour ce faire, analyse de la structure sémantique, traitement des données text
 
 ## Liste des étudiants du groupe 
  
- - Girondin Audic : audric.girondin@etu.univ-montp3.fr
+ - Girondin Audric : audric.girondin@etu.univ-montp3.fr
  - Duckes Jonathan : jonathan.duckes@etu.univ-montp3.fr
  - Alya Zouzou : alya.zouzou@etu.univ-montp3.fr
  - Maeva Maïo : maeva.maio@etu.univ-montp3.fr
