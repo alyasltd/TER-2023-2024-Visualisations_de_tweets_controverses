@@ -4,44 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Topic modeling</title>
-    <style>
-        ul {
-          list-style-type: none;
-          margin: 0;
-          padding: 0;
-          overflow: hidden;
-          background-color: #333;
-        }
-        
-        .nav {
-          float: left;
-        }
-        
-        .nav a {
-          display: block;
-          color: white;
-          text-align: center;
-          padding: 14px 16px;
-          text-decoration: none;
-        }
-        
-        .nav a:hover:not(.active) {
-          background-color: #111;
-        }
-        
-        .active {
-          background-color: #4A99E9;
-        }
-        h1 {
-            color: #4A99E9;
-          }
-        iframe{
-          margin-left: 150px;
-        }
-        body,html{
-            overflow-x: hidden;
-          }
-    </style>
+    <link rel="stylesheet" href="../site.css">
+    <link rel="shortcut icon" type="image/png" href="../images/images.png" />
+
 </head>
 <body>
     <link
@@ -68,7 +33,7 @@
 
     <center><h1>Topic Modeling</h1></center>
 
-    <center><iframe src="lda_visualization.html" width="100%" height="800"></iframe></center>
+    <center><iframe id="lda" src="lda_visualization.html" width="100%" height="800"></iframe></center>
 
     <section class="mt-10">
       <!-- Footer -->
