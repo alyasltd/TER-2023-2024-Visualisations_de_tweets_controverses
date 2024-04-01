@@ -6,7 +6,27 @@
     <title>Indice de controverse</title>
     <link rel="stylesheet" href="../site.css">
     <link rel="shortcut icon" type="image/png" href="../images/images.png" />
-
+    <style>
+      .range-container {
+          display: flex;
+          align-items: center;
+          width: 300px;
+          margin-left: 10px;
+      }
+      .range-label {
+          width: 150px;
+          text-align: left ;
+          margin-right: 10px;
+          margin-left: 10px;
+      }
+      .range-input {
+          width: 250px;
+      }
+      #submitBtn {
+          margin-left: 60px;
+          width : 200px;
+      }
+    </style>
 </head>
 <body>
   <link
@@ -32,10 +52,82 @@
     </ul>
 
     <center><h1>Controversy Index</h1></center>
+    <br>
+    <br>
+    <div class="range-container">
+        <label class="range-label" for="nbRetweet">Retweets:</label>
+        <input type="range" id="nbRetweet" class="range-input" min="0" max="1" step="0.1" value="0.5" onchange="updateThreshold('nbRetweet', this.value)">
+        <span id="nbRetweetValue" style="margin-left: 10px;">0.5</span>    </div>
+    <br>
+    <div class="range-container">
+        <label class="range-label" for="nbLike">Likes:</label>
+        <input type="range" id="nbLike" class="range-input" min="0" max="1" step="0.1" value="0.5" onchange="updateThreshold('nbLike', this.value)">
+        <span id="nbLikeValue" style="margin-left: 10px;">0.5</span>
+    </div>
+    <br>
+    <div class="range-container">
+        <label class="range-label" for="nbReponses">Comments:</label>
+        <input type="range" id="nbReponses" class="range-input" min="0" max="1" step="0.1" value="0.5" onchange="updateThreshold('nbReponses', this.value)">
+        <span id="nbReponsesValue" style="margin-left: 10px;">0.5</span>
+    </div>
+    <br>
+    <div class="range-container">
+        <label class="range-label" for="nbCitations">Quotes:</label>
+        <input type="range" id="nbCitations" class="range-input" min="0" max="1" step="0.1" value="0.5" onchange="updateThreshold('nbCitations', this.value)">
+        <span id="nbCitationsValue" style="margin-left: 10px;">0.5</span>
+    </div>
+    <br>
+    <div class="range-container">
+        <label class="range-label" for="subjectivite">Subjectivity:</label>
+        <input type="range" id="subjectivite" class="range-input" min="0" max="1" step="0.1" value="0.5" onchange="updateThreshold('subjectivite', this.value)">
+        <span id="subjectiviteValue" style="margin-left: 10px;">0.5</span>
+    </div>
+    <br>
+    <div class="range-container">
+        <label class="range-label" for="positive">Positivity:</label>
+        <input type="range" id="positive" class="range-input" min="0" max="1" step="0.1" value="0.5" onchange="updateThreshold('positive', this.value)">
+        <span id="positiveValue" style="margin-left: 10px;">0.5</span>
+    </div>
+    <br>
+    <div class="range-container">
+        <label class="range-label" for="neutral">Neutrality:</label>
+        <input type="range" id="neutral" class="range-input" min="0" max="1" step="0.1" value="0.5" onchange="updateThreshold('neutral', this.value)">
+        <span id="neutralValue" style="margin-left: 10px;">0.5</span>
+    </div>
+    <br>
+    <div class="range-container">
+        <label class="range-label" for="negative">Negativity:</label>
+        <input type="range" id="negative" class="range-input" min="0" max="1" step="0.1" value="0.5" onchange="updateThreshold('negative', this.value)">
+        <span id="negativeValue" style="margin-left: 10px;">0.5</span>
+    </div>
+    <br>
+    <button id="submitBtn" onclick="IndiceControverse()">Submit</button>
+    <script>
+      function updateThreshold(variable, value) {
+        document.getElementById(variable + 'Value').innerText = value;
+      }
 
+      function IndiceControverse() {
+        const nbRetweet = parseFloat(document.getElementById('nbRetweet').value);
+        const nbLike = parseFloat(document.getElementById('nbLike').value);
+        const nbReponses = parseFloat(document.getElementById('nbReponses').value);
+        const nbCitations = parseFloat(document.getElementById('nbCitations').value);
+        const subjectivite = parseFloat(document.getElementById('subjectivite').value);
+        const positive = parseFloat(document.getElementById('positive').value);
+        const neutral = parseFloat(document.getElementById('neutral').value);
+        const negative = parseFloat(document.getElementById('negative').value);
 
+        const controversyIndex = (nbRetweet * 2) +
+                                  (nbLike * 3) +
+                                  (nbReponses * 3) +
+                                  (nbCitations * 5) +
+                                  (subjectivite * 7) +
+                                  (positive * 9) +
+                                  (neutral * 15) +
+                                  (negative * 9);
 
-    
-
+        console.log(controversyIndex);
+      }
+    </script>
 </body>
 </html>
