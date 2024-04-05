@@ -126,10 +126,8 @@
     <br>
     <div class="main-container">
       <div class="content-left">
-          <!-- Tout votre contenu actuel ici -->
           <p id="randomTweet">The random tweet will display here.</p>
           <button id="button-generate" onclick="generateRandomTweet()">Generate another random tweet</button>
-          <!-- Plus de contenu ici... -->
       </div>
       <div class="visualization-right">
         <svg width="220" height="220">
@@ -168,7 +166,7 @@
 
         }
   
-        let currentTweet = {}; // Variable pour stocker le tweet actuel
+        let currentTweet = {};
 
         // Fonction tweet
         function generateRandomTweet() {
@@ -228,8 +226,8 @@
 
       function calculerIndicesPourTousLesTweets() {
           let indicesControverse = [];
-          let tweetMaxControverse = null; // Pour stocker le tweet avec l'indice de controverse maximum
-          let maxControverseIndex = 0; // Pour stocker l'indice de controverse maximum
+          let tweetMaxControverse = null; // Tweet avec l'indice de controverse maximum
+          let maxControverseIndex = 0; // Indice de controverse maximum
 
           const curseurRetweet = parseFloat(document.getElementById('nbRetweet').value);
           const curseurLike = parseFloat(document.getElementById('nbLike').value);
@@ -250,7 +248,7 @@
 
               if (controversyIndex > maxControverseIndex) {
                   maxControverseIndex = controversyIndex;
-                  tweetMaxControverse = tweet; // Mise à jour avec le tweet actuel
+                  tweetMaxControverse = tweet;
               }
 
               indicesControverse.push({ tweetId: tweet.id || "Inconnu", indice: controversyIndex.toFixed(2) });
@@ -282,8 +280,8 @@
 
           // Vérifier si la somme est supérieure à 1
           if (sommeCurseurs > 1) {
-              alert("La somme des valeurs des curseurs ne peut pas dépasser 1.");
-              return; // Arrêter la fonction si la somme est invalide
+              alert("Sum greater than 1.");
+              return;
           }
           
           // Utiliser les valeurs du currentTweet pour les calculs, multipliées par la position du curseur
@@ -298,7 +296,7 @@
           const controversyIndex = nbRetweet + nbLike + nbReponses + nbCitations + nbPositivity + nbNegativity;
 
           calculerIndicesPourTousLesTweets();
-          // Affichage
+          
           document.getElementById('controversyIndexDisplay').innerText = `Indice de controverse : ${controversyIndex.toFixed(2)}`;
           updateJauge()
       }
@@ -309,12 +307,12 @@
     const percentage = maxControversyIndex ? (controversyIndex / maxControversyIndex) * 100 : 0;
 
     // Calculer la longueur de l'arc proportionnellement au pourcentage
-    const arcLength = (percentage / 100) * (2 * Math.PI * 90); // Longueur d'un cercle : 2 * π * rayon
+    const arcLength = (percentage / 100) * (2 * Math.PI * 90);
 
     // Construire le chemin d'accès pour l'arc
-    let pathDescription = `M 110,20 `; // Début de l'arc
-    pathDescription += `A 90,90 0 ${arcLength > Math.PI * 90 ? 1 : 0},1 `; // Arc de cercle
-    pathDescription += `${110 + 90 * Math.cos(-Math.PI / 2 + arcLength / 90)},${110 + 90 * Math.sin(-Math.PI / 2 + arcLength / 90)}`; // Fin de l'arc
+    let pathDescription = `M 110,20 `;
+    pathDescription += `A 90,90 0 ${arcLength > Math.PI * 90 ? 1 : 0},1 `;
+    pathDescription += `${110 + 90 * Math.cos(-Math.PI / 2 + arcLength / 90)},${110 + 90 * Math.sin(-Math.PI / 2 + arcLength / 90)}`;
 
     // Mettre à jour le chemin d'accès de la jauge et le texte du pourcentage
     document.getElementById('jaugeValue').setAttribute('d', pathDescription);
@@ -324,8 +322,8 @@
 
 
     </script>
-    <p id="controversyIndexDisplay">Indice de controverse : 0</p>
-    <p id="maxControversyIndexDisplay">Indice de controverse maximum : 0</p>
+    <p id="controversyIndexDisplay">Controversy index : 0</p>
+    <p id="maxControversyIndexDisplay">Maximum controversy index : 0</p>
 
 </body>
 </html>
