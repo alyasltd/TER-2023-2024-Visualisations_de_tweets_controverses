@@ -7,24 +7,94 @@
     <link rel="stylesheet" href="../site.css">
     <link rel="shortcut icon" type="image/png" href="../images/images.png" />
     <style>
+      #button-generate {
+        margin-left : 300px;
+      }
+      #randomTweet {
+        border: 1px solid #ddd;
+        box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+        padding: 20px;
+        margin: 20px auto;
+        width: 80%;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+        font-size: 18px;
+      }
+      button {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        width: auto; 
+        margin: 20px 0;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      .range-input {
+        -webkit-appearance: none;
+        width: 40%;
+        height: 8px;
+        border-radius: 5px;
+        background: #ddd;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+      }
+
+      .range-input::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #007bff;
+        cursor: pointer;
+      }
+
+      .range-input::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #007bff;
+        cursor: pointer;
+      }
+
       .range-container {
           display: flex;
           align-items: center;
-          width: 300px;
-          margin-left: 10px;
+          margin: 10px 0;
+          padding: 0 15px;
       }
+
       .range-label {
-          width: 150px;
-          text-align: left ;
-          margin-right: 10px;
-          margin-left: 10px;
+        text-align: right;
+        margin-right: 20px;
       }
-      .range-input {
-          width: 250px;
-      }
+
       #submitBtn {
-          margin-left: 60px;
-          width : 200px;
+        margin-top: 20px;
+        margin-left:22%;
+        width: auto;
+      }
+      .main-container {
+          display: flex;
+          width: 100%;
+      }
+
+      .content-left {
+          width: 50%;
+      }
+
+      .visualization-right {
+          width: 40%;
+          background-color: #f0f0f0;
       }
     </style>
 </head>
@@ -54,6 +124,67 @@
     <center><h1>Controversy Index</h1></center>
     <br>
     <br>
+    <div class="main-container">
+      <div class="content-left">
+          <!-- Tout votre contenu actuel ici -->
+          <p id="randomTweet">The random tweet will display here.</p>
+          <button id="button-generate" onclick="generateRandomTweet()">Generate another random tweet</button>
+          <!-- Plus de contenu ici... -->
+      </div>
+      <div class="visualization-right">
+        <svg width="220" height="220">
+            <circle cx="110" cy="110" r="90" fill="none" stroke="#ddd" stroke-width="20"></circle>
+            <path id="jaugeValue" fill="none" stroke="#007bff" stroke-width="20" d="M 110,20 A 90,90 0 0,1 110,110"></path>
+            <text id="jaugePercentage" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="24" fill="#000">0%</text>
+        </svg>
+    </div>
+    </div>
+  
+    <script>
+        let tweets = [];
+  
+        // Fonction pour charger les tweets depuis le fichier JSON
+        function loadTweets() {
+          fetch('../../Indice_Contro/data_readable.json')
+            .then(response => response.json())
+            .then(data => {
+              tweets = data;
+              generateRandomTweet();
+              displayMaxValues();
+            })
+            .catch(error => console.error("Erreur lors du chargement des tweets :", error));
+        }
+
+        function displayMaxValues() {
+          // Calculer les valeurs maximales directement à partir de `tweets`
+          const maxValues = {
+            nbRetweet: Math.max(...tweets.map(tweet => parseFloat(tweet["Nb retweet"]) || 0)),
+            nbLike: Math.max(...tweets.map(tweet => parseFloat(tweet["Nb like"]) || 0)),
+            nbReponses: Math.max(...tweets.map(tweet => parseFloat(tweet["Nb r\u00e9ponses"]) || 0)),
+            nbCitations: Math.max(...tweets.map(tweet => parseFloat(tweet["Nb citations"]) || 0)),
+            positive: Math.max(...tweets.map(tweet => parseFloat(tweet["positive"]) || 0)),
+            negative: Math.max(...tweets.map(tweet => parseFloat(tweet["negative"]) || 0))
+          };
+
+        }
+  
+        let currentTweet = {}; // Variable pour stocker le tweet actuel
+
+        // Fonction tweet
+        function generateRandomTweet() {
+            if (tweets.length > 0) {
+                const randomIndex = Math.floor(Math.random() * tweets.length);
+                currentTweet = tweets[randomIndex];
+                document.getElementById("randomTweet").innerText = currentTweet.Texte;
+            }
+            console.log(currentTweet)
+        }
+  
+        window.onload = loadTweets;
+      </script>
+    
+    <br>
+    <br>
     <div class="range-container">
         <label class="range-label" for="nbRetweet">Retweets:</label>
         <input type="range" id="nbRetweet" class="range-input" min="0" max="1" step="0.1" value="0.5" onchange="updateThreshold('nbRetweet', this.value)">
@@ -78,21 +209,9 @@
     </div>
     <br>
     <div class="range-container">
-        <label class="range-label" for="subjectivite">Subjectivity:</label>
-        <input type="range" id="subjectivite" class="range-input" min="0" max="1" step="0.1" value="0.5" onchange="updateThreshold('subjectivite', this.value)">
-        <span id="subjectiviteValue" style="margin-left: 10px;">0.5</span>
-    </div>
-    <br>
-    <div class="range-container">
         <label class="range-label" for="positive">Positivity:</label>
         <input type="range" id="positive" class="range-input" min="0" max="1" step="0.1" value="0.5" onchange="updateThreshold('positive', this.value)">
         <span id="positiveValue" style="margin-left: 10px;">0.5</span>
-    </div>
-    <br>
-    <div class="range-container">
-        <label class="range-label" for="neutral">Neutrality:</label>
-        <input type="range" id="neutral" class="range-input" min="0" max="1" step="0.1" value="0.5" onchange="updateThreshold('neutral', this.value)">
-        <span id="neutralValue" style="margin-left: 10px;">0.5</span>
     </div>
     <br>
     <div class="range-container">
@@ -101,33 +220,112 @@
         <span id="negativeValue" style="margin-left: 10px;">0.5</span>
     </div>
     <br>
-    <button id="submitBtn" onclick="IndiceControverse()">Submit</button>
+    <button id="submitBtn" onclick="IndiceControverse()">Calculate</button>
     <script>
       function updateThreshold(variable, value) {
         document.getElementById(variable + 'Value').innerText = value;
       }
 
-      function IndiceControverse() {
-        const nbRetweet = parseFloat(document.getElementById('nbRetweet').value);
-        const nbLike = parseFloat(document.getElementById('nbLike').value);
-        const nbReponses = parseFloat(document.getElementById('nbReponses').value);
-        const nbCitations = parseFloat(document.getElementById('nbCitations').value);
-        const subjectivite = parseFloat(document.getElementById('subjectivite').value);
-        const positive = parseFloat(document.getElementById('positive').value);
-        const neutral = parseFloat(document.getElementById('neutral').value);
-        const negative = parseFloat(document.getElementById('negative').value);
+      function calculerIndicesPourTousLesTweets() {
+          let indicesControverse = [];
+          let tweetMaxControverse = null; // Pour stocker le tweet avec l'indice de controverse maximum
+          let maxControverseIndex = 0; // Pour stocker l'indice de controverse maximum
 
-        const controversyIndex = (nbRetweet * 2) +
-                                  (nbLike * 3) +
-                                  (nbReponses * 3) +
-                                  (nbCitations * 5) +
-                                  (subjectivite * 7) +
-                                  (positive * 9) +
-                                  (neutral * 15) +
-                                  (negative * 9);
+          const curseurRetweet = parseFloat(document.getElementById('nbRetweet').value);
+          const curseurLike = parseFloat(document.getElementById('nbLike').value);
+          const curseurReponses = parseFloat(document.getElementById('nbReponses').value);
+          const curseurCitations = parseFloat(document.getElementById('nbCitations').value);
+          const curseurPositivity = parseFloat(document.getElementById('positive').value);
+          const curseurNegativity = parseFloat(document.getElementById('negative').value);
 
-        console.log(controversyIndex);
+          tweets.forEach(tweet => {
+              const nbRetweet = parseFloat(tweet["Nb retweet"]) * curseurRetweet || 0;
+              const nbLike = parseFloat(tweet["Nb like"]) * curseurLike || 0;
+              const nbReponses = parseFloat(tweet["Nb r\u00e9ponses"]) * curseurReponses || 0;
+              const nbCitations = parseFloat(tweet["Nb citations"]) * curseurCitations || 0;
+              const nbPositivity = parseFloat(tweet["positive"]) * curseurPositivity || 0;
+              const nbNegativity = parseFloat(tweet["negative"]) * curseurNegativity || 0;
+
+              const controversyIndex = nbRetweet + nbLike + nbReponses + nbCitations + nbPositivity + nbNegativity;
+
+              if (controversyIndex > maxControverseIndex) {
+                  maxControverseIndex = controversyIndex;
+                  tweetMaxControverse = tweet; // Mise à jour avec le tweet actuel
+              }
+
+              indicesControverse.push({ tweetId: tweet.id || "Inconnu", indice: controversyIndex.toFixed(2) });
+          });
+
+          // Afficher l'indice de controverse maximum et le tweet correspondant dans la console
+          if (tweetMaxControverse !== null) {
+              console.log(`Tweet avec l'indice de controverse maximum (${maxControverseIndex.toFixed(2)}): `, tweetMaxControverse);
+          } else {
+              console.log("Aucun tweet trouvé ou les tweets n'ont pas pu être chargés.");
+          }
+
+          // Mettre à jour l'affichage de l'indice de controverse maximum sur le site
+          document.getElementById('maxControversyIndexDisplay').innerText = `Indice de controverse maximum : ${maxControverseIndex.toFixed(2)}`;
+          updateJauge()
       }
+
+      function IndiceControverse() {
+          // Récupérer les valeurs des curseurs (entre 0 et 1)
+          const curseurRetweet = parseFloat(document.getElementById('nbRetweet').value);
+          const curseurLike = parseFloat(document.getElementById('nbLike').value);
+          const curseurReponses = parseFloat(document.getElementById('nbReponses').value);
+          const curseurCitations = parseFloat(document.getElementById('nbCitations').value);
+          const curseurPositivity = parseFloat(document.getElementById('positive').value);
+          const curseurNegativity = parseFloat(document.getElementById('negative').value);
+          
+          // Calculer la somme des valeurs des curseurs
+        const sommeCurseurs = curseurRetweet + curseurLike + curseurReponses + curseurCitations + curseurPositivity + curseurNegativity;
+
+          // Vérifier si la somme est supérieure à 1
+          if (sommeCurseurs > 1) {
+              alert("La somme des valeurs des curseurs ne peut pas dépasser 1.");
+              return; // Arrêter la fonction si la somme est invalide
+          }
+          
+          // Utiliser les valeurs du currentTweet pour les calculs, multipliées par la position du curseur
+          const nbRetweet = parseFloat(currentTweet["Nb retweet"]) * curseurRetweet || 0;
+          const nbLike = parseFloat(currentTweet["Nb like"]) * curseurLike || 0;
+          const nbReponses = parseFloat(currentTweet["Nb r\u00e9ponses"]) * curseurReponses || 0;
+          const nbCitations = parseFloat(currentTweet["Nb citations"]) * curseurCitations || 0;
+          const nbPositivity = parseFloat(currentTweet["positive"]) * curseurPositivity || 0;
+          const nbNegativity = parseFloat(currentTweet["negative"]) * curseurNegativity || 0;
+
+          // Calcul final de l'indice de controverse
+          const controversyIndex = nbRetweet + nbLike + nbReponses + nbCitations + nbPositivity + nbNegativity;
+
+          calculerIndicesPourTousLesTweets();
+          // Affichage
+          document.getElementById('controversyIndexDisplay').innerText = `Indice de controverse : ${controversyIndex.toFixed(2)}`;
+          updateJauge()
+      }
+
+      function updateJauge() {
+    const maxControversyIndex = parseFloat(document.getElementById('maxControversyIndexDisplay').innerText.split(': ')[1]);
+    const controversyIndex = parseFloat(document.getElementById('controversyIndexDisplay').innerText.split(': ')[1]);
+    const percentage = maxControversyIndex ? (controversyIndex / maxControversyIndex) * 100 : 0;
+
+    // Calculer la longueur de l'arc proportionnellement au pourcentage
+    const arcLength = (percentage / 100) * (2 * Math.PI * 90); // Longueur d'un cercle : 2 * π * rayon
+
+    // Construire le chemin d'accès pour l'arc
+    let pathDescription = `M 110,20 `; // Début de l'arc
+    pathDescription += `A 90,90 0 ${arcLength > Math.PI * 90 ? 1 : 0},1 `; // Arc de cercle
+    pathDescription += `${110 + 90 * Math.cos(-Math.PI / 2 + arcLength / 90)},${110 + 90 * Math.sin(-Math.PI / 2 + arcLength / 90)}`; // Fin de l'arc
+
+    // Mettre à jour le chemin d'accès de la jauge et le texte du pourcentage
+    document.getElementById('jaugeValue').setAttribute('d', pathDescription);
+    document.getElementById('jaugePercentage').textContent = `${percentage.toFixed(2)}%`;
+}
+
+
+
     </script>
+    <p id="controversyIndexDisplay">Indice de controverse : 0</p>
+    <p id="maxControversyIndexDisplay">Indice de controverse maximum : 0</p>
+
 </body>
 </html>
