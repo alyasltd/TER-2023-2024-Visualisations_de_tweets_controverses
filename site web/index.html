@@ -3,50 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" type="image/png" href="images.png" />
+    <link rel="shortcut icon" type="image/png" href="images/images.png" />
 
     <title>Tweets</title>
-    <style>
-      ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background-color: #333;
-      }
 
-      li {
-        float: left;
-      }
-
-      li a {
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-      }
-
-      li a:hover:not(.active) {
-        background-color: #111;
-      }
-
-      .active {
-        background-color: #4a99e9;
-      }
-      img {
-        margin-top: 10%;
-        width: auto;
-        height: auto;
-      }
-      h1 {
-        color: #4a99e9;
-      }
-      body,
-      html {
-        overflow-y: hidden;
-      }
-    </style>
+    <link rel="stylesheet" href="site.css" />
   </head>
   <body>
     <link
@@ -64,19 +25,65 @@
     <ul>
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="html/dashbord.html">Dashbord</a></li>
-      <li><a href="html/inm.html">INM</a></li>
       <li><a href="html/topic.html">Topic</a></li>
       <li><a href="html/sentiment.html">Sentiments</a></li>
-      <li><a href="html/opinions.html">Opinions</a></li>
-      <li><a href="html/community_detection_inm_cluster.html">Cluster</a></li>
-      <li><a href="html/indice_controverse.html">Indice de controverse</a></li>
-      <li><a href="html/datasets.html">Datasets</a></li>
-      <li><a href="html/contact.html">Contact</a></li>
-      <li style="float: right"><a href="#about">About</a></li>
+      <li><a href="html/community_detection_inm_cluster.html">Hashtags</a></li>
+      <li><a href="html/indice_controverse.html">Controversy Index</a></li>
+      <li><a href="html/data.html">Our data</a></li>
+
+      <li style="float: right"><a href="html/contact.html">Contact</a></li>
     </ul>
-    <center>
-      <img src="images/Capture d’écran 2024-02-09 à 10.09.57.png" />
-    </center>
+    <img id="paulva" src="images/upv-eps-converted-to.png" />
+    <img id="master" src="images/master.png" />
+    <img id="cnrs" src="images/LOGO_CNRS_2019_RVB.png" />
+    <img id="umontpellier" src="images/Logo_université_montpellier.png" />
+    <img id="janssen" src="images/janssen.png" />
+    <img id="lirmm" src="images/lirmm.png" />
+
+    <div class="tableauPlaceholder" id="viz1710697264959">
+      <noscript
+        ><a href="#"
+          ><img
+            alt="Tableau de bord 2 "
+            src="https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ho&#47;houriaNUAGEDEMOT&#47;Tableaudebord2&#47;1_rss.png"
+            style="border: none" /></a></noscript
+      ><object class="tableauViz" style="display: none">
+        <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
+        <param name="embed_code_version" value="3" />
+        <param name="site_root" value="" />
+        <param name="name" value="houriaNUAGEDEMOT&#47;Tableaudebord2" />
+        <param name="tabs" value="no" />
+        <param name="toolbar" value="yes" />
+        <param
+          name="static_image"
+          value="https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ho&#47;houriaNUAGEDEMOT&#47;Tableaudebord2&#47;1.png"
+        />
+        <param name="animate_transition" value="yes" />
+        <param name="display_static_image" value="yes" />
+        <param name="display_spinner" value="yes" />
+        <param name="display_overlay" value="yes" />
+        <param name="display_count" value="yes" />
+        <param name="language" value="fr-FR" />
+      </object>
+    </div>
+    <script type="text/javascript">
+      var divElement = document.getElementById("viz1710697264959");
+      var vizElement = divElement.getElementsByTagName("object")[0];
+      if (divElement.offsetWidth > 800) {
+        vizElement.style.width = "1200px";
+        vizElement.style.height = "827px";
+      } else if (divElement.offsetWidth > 500) {
+        vizElement.style.width = "1200px";
+        vizElement.style.height = "827px";
+      } else {
+        vizElement.style.width = "100%";
+        vizElement.style.height = "727px";
+      }
+      var scriptElement = document.createElement("script");
+      scriptElement.src =
+        "https://public.tableau.com/javascripts/api/viz_v1.js";
+      vizElement.parentNode.insertBefore(scriptElement, vizElement);
+    </script>
 
     <section class="mt-10">
       <!-- Footer -->

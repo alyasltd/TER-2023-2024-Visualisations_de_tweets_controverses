@@ -4,44 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Topic modeling</title>
-    <style>
-        ul {
-          list-style-type: none;
-          margin: 0;
-          padding: 0;
-          overflow: hidden;
-          background-color: #333;
-        }
-        
-        .nav {
-          float: left;
-        }
-        
-        .nav a {
-          display: block;
-          color: white;
-          text-align: center;
-          padding: 14px 16px;
-          text-decoration: none;
-        }
-        
-        .nav a:hover:not(.active) {
-          background-color: #111;
-        }
-        
-        .active {
-          background-color: #4A99E9;
-        }
-        h1 {
-            color: #4A99E9;
-          }
-        iframe{
-          margin-left: 150px;
-        }
-        body,html{
-            overflow-x: hidden;
-          }
-    </style>
+    <link rel="stylesheet" href="../site.css">
+    <link rel="shortcut icon" type="image/png" href="../images/images.png" />
+
 </head>
 <body>
     <link
@@ -58,19 +23,26 @@
     <ul>
         <li class="nav"><a href="../index.html" >Home</a></li>
         <li class="nav"><a href="dashbord.html">Dashbord</a></li>
-        <li class="nav"><a href="inm.html">INM</a></li>
         <li class="nav"><a href="topic.html"  class="active">Topic</a></li>
         <li class="nav"><a href="sentiment.html" >Sentiments</a></li>
-        <li class="nav"><a href="emotions.html" >Emotions</a></li>
-        <li class="nav"><a href="community_detection_inm_cluster.html">Cluster</a></li>
-        <li class="nav"><a href="indice_controverse.html">Indice de controverse</a></li>
-        <li class="nav"><a href="contact.html">Contact</a></li>
-        <li  class="nav" style="float:right"><a href="#about">About</a></li>
+        <li class="nav"><a href="community_detection_inm_cluster.html">Hashtags</a></li>
+        <li class="nav"><a href="indice_controverse.html">Controversy Index</a></li>
+        <li  class="nav" ><a href="data.html">Our data</a></li>
+        <li class="nav" style="float:right"><a href="contact.html">Contact</a></li>
     </ul>
 
     <center><h1>Topic Modeling</h1></center>
 
-    <center><iframe src="lda_visualization.html" width="100%" height="800"></iframe></center>
+    <center><iframe id="lda" src="lda_visualization.html" width="100%" height="800"></iframe></center>
+
+   <!-- Ajoutez une nouvelle section pour afficher le tableau -->
+   <section class="mt-10">
+      <div class="container">
+          <h2>Top Words by Label</h2>
+          <!-- Utilisez une balise iframe pour inclure le tableau -->
+          <iframe src="top_words_by_label.html" width="100%" height="400"></iframe>
+      </div>
+   </section>
 
     <section class="mt-10">
       <!-- Footer -->
