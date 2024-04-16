@@ -1,5 +1,41 @@
 <html>
     <head>
+
+      <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+          }
+          
+          li {
+            float: left;
+          }
+          
+          li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+          }
+          
+          li a:hover:not(.active) {
+            background-color: #111;
+          }
+          
+          .active {
+            background-color: #4A99E9;
+          }
+          h1 {
+            color: #4A99E9;
+          }
+          body,html{
+            overflow-x: hidden;
+          }
+        </style>
         <meta charset="utf-8">
         
             <script>function neighbourhoodHighlight(params) {
@@ -203,10 +239,21 @@ function highlightFilter(filter) {
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/tom-select/2.0.0-rc.4/js/tom-select.complete.js" integrity="sha512-jeF9CfnvzDiw9G9xiksVjxR2lib44Gnovvkv+3CgCG6NXCD4gqlA5nDAVW5WjpA+i+/zKsUWV5xNEbW1X/HH0Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             
 
-        
-<center>
-<h1></h1>
-</center>
+                <ul>
+                  <li><a href="../index.html" >Home</a></li>
+                  <li><a href="dashbord.html">Dashbord</a></li>
+                  <li ><a href="inm.html">INM</a></li>
+                  <li><a href="topic.html"  >Topic</a></li>
+                  <li><a href="sentiment.html" >Sentiments</a></li>
+                  <li><a href="community_detection_inm_cluster.html" class="active">Cluster</a></li>
+                  <li><a href="indice_controverse.html">Indice de controverse</a></li>
+                  <li><a href="contact.html" >Contact</a></li>
+                  <li style="float:right"><a href="#about">About</a></li>
+              </ul>       
+          <center>
+          <h1>Community Cluster</h1>
+          </center>     
+
 
 <!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
 <script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
@@ -227,24 +274,26 @@ function highlightFilter(filter) {
           <h1></h1>
         </center>
         <style type="text/css">
+          .network-container {
+              display: flex; /* Use flexbox to align children side by side */
+              justify-content: center; /* Center children horizontally */
+              align-items: start; /* Align children at the start of the container vertically */
+              width: 100%; /* Container takes full width of its parent */
+              flex-direction: row;
+            }
 
-             #mynetwork {
-                 width: 100%;
-                 height: 600px;
-                 background-color: #ffffff;
-                 border: 1px solid lightgray;
-                 position: relative;
-                 float: left;
-             }
+#mynetwork {
+              flex-grow: 1;
+              width: 80%;
+              border: 1px solid lightgray;
+              height: 100%; /* Adjust height as needed */
+            }
 
-             
-
-             
-             #config {
-                 float: left;
-                 width: 400px;
-                 height: 600px;
-             }
+            #config {
+              flex-grow: 1;
+              width: 500px;
+               height: 100%; /* Adjust height as needed */
+            }
              
 
              
@@ -267,15 +316,21 @@ function highlightFilter(filter) {
                             >
                                 <option selected>Select a Node by ID</option>
                                 
-                                    <option value="#CANCER, #FASTING, #FASTING">#CANCER, #FASTING, #FASTING</option>
+                                    <option value="#CANCER, #SPORT, #FASTING">#CANCER, #SPORT, #FASTING</option>
                                 
-                                    <option value="#CANCER, #INTERMITTENTFASTING, #FASTING">#CANCER, #INTERMITTENTFASTING, #FASTING</option>
+                                    <option value="#CHARITY, #QUIZ, #CANCER">#CHARITY, #QUIZ, #CANCER</option>
                                 
-                                    <option value="#CANCER, #EXERCISE, #SPORT">#CANCER, #EXERCISE, #SPORT</option>
+                                    <option value="#HEMP, #CANNABIS, #CBDOIL">#HEMP, #CANNABIS, #CBDOIL</option>
                                 
-                                    <option value="#CANCER, #DIET, #FASTING">#CANCER, #DIET, #FASTING</option>
+                                    <option value="#CANCER, #SPORT, #SUN">#CANCER, #SPORT, #SUN</option>
                                 
-                                    <option value="#CANCER, #CHEMOTHERAPY, #FASTING">#CANCER, #CHEMOTHERAPY, #FASTING</option>
+                                    <option value="#DIET, #CANCER, #FASTING">#DIET, #CANCER, #FASTING</option>
+                                
+                                    <option value="#CANCER, #NUTRITION, #FASTING">#CANCER, #NUTRITION, #FASTING</option>
+                                
+                                    <option value="#IMMUNESYSTEM, #CANCER, #FASTING">#IMMUNESYSTEM, #CANCER, #FASTING</option>
+                                
+                                    <option value="#CHEMO, #FASTING, #FASTING">#CHEMO, #FASTING, #FASTING</option>
                                 
                                     <option value="#FASTING, #CANCER, #CANCER">#FASTING, #CANCER, #CANCER</option>
                                 
@@ -283,9 +338,13 @@ function highlightFilter(filter) {
                                 
                                     <option value="#WORLDWIDE, #CANCER, #CARRIBEAN">#WORLDWIDE, #CANCER, #CARRIBEAN</option>
                                 
-                                    <option value="#DIET, #KETOSIS, #FASTING">#DIET, #KETOSIS, #FASTING</option>
+                                    <option value="#CANCER, #CANNABIS, #CANNABIS">#CANCER, #CANNABIS, #CANNABIS</option>
                                 
-                                    <option value="#ESSENTIALOILS, #HOMEOPATHY, #DETOX">#ESSENTIALOILS, #HOMEOPATHY, #DETOX</option>
+                                    <option value="#CANNABIS, #CANCER, #CANCER">#CANNABIS, #CANCER, #CANCER</option>
+                                
+                                    <option value="#CANCER, #CANNABIS, #CBD">#CANCER, #CANNABIS, #CBD</option>
+                                
+                                    <option value="#CANNABIS, #CANCER, #MARIJUANA">#CANNABIS, #CANCER, #MARIJUANA</option>
                                 
                             </select>
                         </div>
@@ -509,8 +568,8 @@ function highlightFilter(filter) {
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#8dd3c7", "id": "#CANCER, #FASTING, #FASTING", "label": "#CANCER, #FASTING, #FASTING", "shape": "dot"}, {"color": "#8dd3c7", "id": "#CANCER, #INTERMITTENTFASTING, #FASTING", "label": "#CANCER, #INTERMITTENTFASTING, #FASTING", "shape": "dot"}, {"color": "#8dd3c7", "id": "#CANCER, #EXERCISE, #SPORT", "label": "#CANCER, #EXERCISE, #SPORT", "shape": "dot"}, {"color": "#8dd3c7", "id": "#CANCER, #DIET, #FASTING", "label": "#CANCER, #DIET, #FASTING", "shape": "dot"}, {"color": "#8dd3c7", "id": "#CANCER, #CHEMOTHERAPY, #FASTING", "label": "#CANCER, #CHEMOTHERAPY, #FASTING", "shape": "dot"}, {"color": "#ffed6f", "id": "#FASTING, #CANCER, #CANCER", "label": "#FASTING, #CANCER, #CANCER", "shape": "dot"}, {"color": "#ffed6f", "id": "#FASTINGSUMMIT, #FASTING, #CANCER", "label": "#FASTINGSUMMIT, #FASTING, #CANCER", "shape": "dot"}, {"color": "#ffed6f", "id": "#WORLDWIDE, #CANCER, #CARRIBEAN", "label": "#WORLDWIDE, #CANCER, #CARRIBEAN", "shape": "dot"}, {"color": "#ffed6f", "id": "#DIET, #KETOSIS, #FASTING", "label": "#DIET, #KETOSIS, #FASTING", "shape": "dot"}, {"color": "#ffed6f", "id": "#ESSENTIALOILS, #HOMEOPATHY, #DETOX", "label": "#ESSENTIALOILS, #HOMEOPATHY, #DETOX", "shape": "dot"}]);
-                  edges = new vis.DataSet([{"from": "#CANCER, #FASTING, #FASTING", "title": "120", "to": "#CANCER, #INTERMITTENTFASTING, #FASTING", "value": 120}, {"from": "#CANCER, #FASTING, #FASTING", "title": "104", "to": "#CANCER, #EXERCISE, #SPORT", "value": 104}, {"from": "#CANCER, #FASTING, #FASTING", "title": "125", "to": "#CANCER, #DIET, #FASTING", "value": 125}, {"from": "#CANCER, #FASTING, #FASTING", "title": "58", "to": "#CANCER, #CHEMOTHERAPY, #FASTING", "value": 58}, {"from": "#CANCER, #FASTING, #FASTING", "title": "9", "to": "#FASTING, #CANCER, #CANCER", "value": 9}, {"from": "#CANCER, #FASTING, #FASTING", "title": "5", "to": "#FASTINGSUMMIT, #FASTING, #CANCER", "value": 5}, {"from": "#CANCER, #FASTING, #FASTING", "title": "14", "to": "#WORLDWIDE, #CANCER, #CARRIBEAN", "value": 14}, {"from": "#CANCER, #FASTING, #FASTING", "title": "26", "to": "#DIET, #KETOSIS, #FASTING", "value": 26}, {"from": "#CANCER, #FASTING, #FASTING", "title": "7", "to": "#ESSENTIALOILS, #HOMEOPATHY, #DETOX", "value": 7}, {"from": "#CANCER, #INTERMITTENTFASTING, #FASTING", "title": "35", "to": "#CANCER, #EXERCISE, #SPORT", "value": 35}, {"from": "#CANCER, #INTERMITTENTFASTING, #FASTING", "title": "48", "to": "#CANCER, #DIET, #FASTING", "value": 48}, {"from": "#CANCER, #INTERMITTENTFASTING, #FASTING", "title": "31", "to": "#CANCER, #CHEMOTHERAPY, #FASTING", "value": 31}, {"from": "#CANCER, #INTERMITTENTFASTING, #FASTING", "title": "9", "to": "#FASTING, #CANCER, #CANCER", "value": 9}, {"from": "#CANCER, #INTERMITTENTFASTING, #FASTING", "title": "4", "to": "#FASTINGSUMMIT, #FASTING, #CANCER", "value": 4}, {"from": "#CANCER, #INTERMITTENTFASTING, #FASTING", "title": "5", "to": "#WORLDWIDE, #CANCER, #CARRIBEAN", "value": 5}, {"from": "#CANCER, #INTERMITTENTFASTING, #FASTING", "title": "23", "to": "#DIET, #KETOSIS, #FASTING", "value": 23}, {"from": "#CANCER, #INTERMITTENTFASTING, #FASTING", "title": "3", "to": "#ESSENTIALOILS, #HOMEOPATHY, #DETOX", "value": 3}, {"from": "#CANCER, #EXERCISE, #SPORT", "title": "41", "to": "#CANCER, #DIET, #FASTING", "value": 41}, {"from": "#CANCER, #EXERCISE, #SPORT", "title": "27", "to": "#CANCER, #CHEMOTHERAPY, #FASTING", "value": 27}, {"from": "#CANCER, #EXERCISE, #SPORT", "title": "9", "to": "#FASTING, #CANCER, #CANCER", "value": 9}, {"from": "#CANCER, #EXERCISE, #SPORT", "title": "4", "to": "#FASTINGSUMMIT, #FASTING, #CANCER", "value": 4}, {"from": "#CANCER, #EXERCISE, #SPORT", "title": "6", "to": "#WORLDWIDE, #CANCER, #CARRIBEAN", "value": 6}, {"from": "#CANCER, #EXERCISE, #SPORT", "title": "13", "to": "#DIET, #KETOSIS, #FASTING", "value": 13}, {"from": "#CANCER, #EXERCISE, #SPORT", "title": "4", "to": "#ESSENTIALOILS, #HOMEOPATHY, #DETOX", "value": 4}, {"from": "#CANCER, #DIET, #FASTING", "title": "25", "to": "#CANCER, #CHEMOTHERAPY, #FASTING", "value": 25}, {"from": "#CANCER, #DIET, #FASTING", "title": "9", "to": "#FASTING, #CANCER, #CANCER", "value": 9}, {"from": "#CANCER, #DIET, #FASTING", "title": "4", "to": "#FASTINGSUMMIT, #FASTING, #CANCER", "value": 4}, {"from": "#CANCER, #DIET, #FASTING", "title": "4", "to": "#WORLDWIDE, #CANCER, #CARRIBEAN", "value": 4}, {"from": "#CANCER, #DIET, #FASTING", "title": "19", "to": "#DIET, #KETOSIS, #FASTING", "value": 19}, {"from": "#CANCER, #DIET, #FASTING", "title": "4", "to": "#ESSENTIALOILS, #HOMEOPATHY, #DETOX", "value": 4}, {"from": "#CANCER, #CHEMOTHERAPY, #FASTING", "title": "8", "to": "#FASTING, #CANCER, #CANCER", "value": 8}, {"from": "#CANCER, #CHEMOTHERAPY, #FASTING", "title": "4", "to": "#FASTINGSUMMIT, #FASTING, #CANCER", "value": 4}, {"from": "#CANCER, #CHEMOTHERAPY, #FASTING", "title": "4", "to": "#WORLDWIDE, #CANCER, #CARRIBEAN", "value": 4}, {"from": "#CANCER, #CHEMOTHERAPY, #FASTING", "title": "10", "to": "#DIET, #KETOSIS, #FASTING", "value": 10}, {"from": "#CANCER, #CHEMOTHERAPY, #FASTING", "title": "3", "to": "#ESSENTIALOILS, #HOMEOPATHY, #DETOX", "value": 3}, {"from": "#FASTING, #CANCER, #CANCER", "title": "4", "to": "#FASTINGSUMMIT, #FASTING, #CANCER", "value": 4}, {"from": "#FASTING, #CANCER, #CANCER", "title": "3", "to": "#WORLDWIDE, #CANCER, #CARRIBEAN", "value": 3}, {"from": "#FASTING, #CANCER, #CANCER", "title": "8", "to": "#DIET, #KETOSIS, #FASTING", "value": 8}, {"from": "#FASTING, #CANCER, #CANCER", "title": "3", "to": "#ESSENTIALOILS, #HOMEOPATHY, #DETOX", "value": 3}, {"from": "#FASTINGSUMMIT, #FASTING, #CANCER", "title": "2", "to": "#WORLDWIDE, #CANCER, #CARRIBEAN", "value": 2}, {"from": "#FASTINGSUMMIT, #FASTING, #CANCER", "title": "4", "to": "#DIET, #KETOSIS, #FASTING", "value": 4}, {"from": "#FASTINGSUMMIT, #FASTING, #CANCER", "title": "3", "to": "#ESSENTIALOILS, #HOMEOPATHY, #DETOX", "value": 3}, {"from": "#WORLDWIDE, #CANCER, #CARRIBEAN", "title": "3", "to": "#DIET, #KETOSIS, #FASTING", "value": 3}, {"from": "#WORLDWIDE, #CANCER, #CARRIBEAN", "title": "2", "to": "#ESSENTIALOILS, #HOMEOPATHY, #DETOX", "value": 2}, {"from": "#DIET, #KETOSIS, #FASTING", "title": "3", "to": "#ESSENTIALOILS, #HOMEOPATHY, #DETOX", "value": 3}]);
+                  nodes = new vis.DataSet([{"color": "#f7fcf0", "id": "#CANCER, #SPORT, #FASTING", "label": "#CANCER, #SPORT, #FASTING", "shape": "dot"}, {"color": "#084081", "id": "#CHARITY, #QUIZ, #CANCER", "label": "#CHARITY, #QUIZ, #CANCER", "shape": "dot"}, {"color": "#084081", "id": "#HEMP, #CANNABIS, #CBDOIL", "label": "#HEMP, #CANNABIS, #CBDOIL", "shape": "dot"}, {"color": "#084081", "id": "#CANCER, #SPORT, #SUN", "label": "#CANCER, #SPORT, #SUN", "shape": "dot"}, {"color": "#f7fcf0", "id": "#DIET, #CANCER, #FASTING", "label": "#DIET, #CANCER, #FASTING", "shape": "dot"}, {"color": "#f7fcf0", "id": "#CANCER, #NUTRITION, #FASTING", "label": "#CANCER, #NUTRITION, #FASTING", "shape": "dot"}, {"color": "#7bccc4", "id": "#IMMUNESYSTEM, #CANCER, #FASTING", "label": "#IMMUNESYSTEM, #CANCER, #FASTING", "shape": "dot"}, {"color": "#7bccc4", "id": "#CHEMO, #FASTING, #FASTING", "label": "#CHEMO, #FASTING, #FASTING", "shape": "dot"}, {"color": "#7bccc4", "id": "#FASTING, #CANCER, #CANCER", "label": "#FASTING, #CANCER, #CANCER", "shape": "dot"}, {"color": "#7bccc4", "id": "#FASTINGSUMMIT, #FASTING, #CANCER", "label": "#FASTINGSUMMIT, #FASTING, #CANCER", "shape": "dot"}, {"color": "#7bccc4", "id": "#WORLDWIDE, #CANCER, #CARRIBEAN", "label": "#WORLDWIDE, #CANCER, #CARRIBEAN", "shape": "dot"}, {"color": "#f7fcf0", "id": "#CANCER, #CANNABIS, #CANNABIS", "label": "#CANCER, #CANNABIS, #CANNABIS", "shape": "dot"}, {"color": "#084081", "id": "#CANNABIS, #CANCER, #CANCER", "label": "#CANNABIS, #CANCER, #CANCER", "shape": "dot"}, {"color": "#084081", "id": "#CANCER, #CANNABIS, #CBD", "label": "#CANCER, #CANNABIS, #CBD", "shape": "dot"}, {"color": "#084081", "id": "#CANNABIS, #CANCER, #MARIJUANA", "label": "#CANNABIS, #CANCER, #MARIJUANA", "shape": "dot"}]);
+                  edges = new vis.DataSet([{"from": "#CANCER, #SPORT, #FASTING", "title": "5", "to": "#CHARITY, #QUIZ, #CANCER", "value": 5}, {"from": "#CANCER, #SPORT, #FASTING", "title": "22", "to": "#HEMP, #CANNABIS, #CBDOIL", "value": 22}, {"from": "#CANCER, #SPORT, #FASTING", "title": "20", "to": "#CANCER, #SPORT, #SUN", "value": 20}, {"from": "#CANCER, #SPORT, #FASTING", "title": "127", "to": "#DIET, #CANCER, #FASTING", "value": 127}, {"from": "#CANCER, #SPORT, #FASTING", "title": "108", "to": "#CANCER, #NUTRITION, #FASTING", "value": 108}, {"from": "#CANCER, #SPORT, #FASTING", "title": "41", "to": "#IMMUNESYSTEM, #CANCER, #FASTING", "value": 41}, {"from": "#CANCER, #SPORT, #FASTING", "title": "24", "to": "#CHEMO, #FASTING, #FASTING", "value": 24}, {"from": "#CANCER, #SPORT, #FASTING", "title": "11", "to": "#FASTING, #CANCER, #CANCER", "value": 11}, {"from": "#CANCER, #SPORT, #FASTING", "title": "5", "to": "#FASTINGSUMMIT, #FASTING, #CANCER", "value": 5}, {"from": "#CANCER, #SPORT, #FASTING", "title": "16", "to": "#WORLDWIDE, #CANCER, #CARRIBEAN", "value": 16}, {"from": "#CANCER, #SPORT, #FASTING", "title": "189", "to": "#CANCER, #CANNABIS, #CANNABIS", "value": 189}, {"from": "#CANCER, #SPORT, #FASTING", "title": "7", "to": "#CANNABIS, #CANCER, #CANCER", "value": 7}, {"from": "#CANCER, #SPORT, #FASTING", "title": "25", "to": "#CANCER, #CANNABIS, #CBD", "value": 25}, {"from": "#CANCER, #SPORT, #FASTING", "title": "14", "to": "#CANNABIS, #CANCER, #MARIJUANA", "value": 14}, {"from": "#CHARITY, #QUIZ, #CANCER", "title": "2", "to": "#HEMP, #CANNABIS, #CBDOIL", "value": 2}, {"from": "#CHARITY, #QUIZ, #CANCER", "title": "2", "to": "#CANCER, #SPORT, #SUN", "value": 2}, {"from": "#CHARITY, #QUIZ, #CANCER", "title": "2", "to": "#DIET, #CANCER, #FASTING", "value": 2}, {"from": "#CHARITY, #QUIZ, #CANCER", "title": "2", "to": "#CANCER, #NUTRITION, #FASTING", "value": 2}, {"from": "#CHARITY, #QUIZ, #CANCER", "title": "1", "to": "#IMMUNESYSTEM, #CANCER, #FASTING", "value": 1}, {"from": "#CHARITY, #QUIZ, #CANCER", "title": "1", "to": "#CHEMO, #FASTING, #FASTING", "value": 1}, {"from": "#CHARITY, #QUIZ, #CANCER", "title": "1", "to": "#FASTING, #CANCER, #CANCER", "value": 1}, {"from": "#CHARITY, #QUIZ, #CANCER", "title": "1", "to": "#FASTINGSUMMIT, #FASTING, #CANCER", "value": 1}, {"from": "#CHARITY, #QUIZ, #CANCER", "title": "1", "to": "#WORLDWIDE, #CANCER, #CARRIBEAN", "value": 1}, {"from": "#CHARITY, #QUIZ, #CANCER", "title": "1", "to": "#CANCER, #CANNABIS, #CANNABIS", "value": 1}, {"from": "#CHARITY, #QUIZ, #CANCER", "title": "1", "to": "#CANNABIS, #CANCER, #CANCER", "value": 1}, {"from": "#CHARITY, #QUIZ, #CANCER", "title": "1", "to": "#CANCER, #CANNABIS, #CBD", "value": 1}, {"from": "#CHARITY, #QUIZ, #CANCER", "title": "1", "to": "#CANNABIS, #CANCER, #MARIJUANA", "value": 1}, {"from": "#HEMP, #CANNABIS, #CBDOIL", "title": "4", "to": "#CANCER, #SPORT, #SUN", "value": 4}, {"from": "#HEMP, #CANNABIS, #CBDOIL", "title": "6", "to": "#DIET, #CANCER, #FASTING", "value": 6}, {"from": "#HEMP, #CANNABIS, #CBDOIL", "title": "10", "to": "#CANCER, #NUTRITION, #FASTING", "value": 10}, {"from": "#HEMP, #CANNABIS, #CBDOIL", "title": "6", "to": "#IMMUNESYSTEM, #CANCER, #FASTING", "value": 6}, {"from": "#HEMP, #CANNABIS, #CBDOIL", "title": "2", "to": "#CHEMO, #FASTING, #FASTING", "value": 2}, {"from": "#HEMP, #CANNABIS, #CBDOIL", "title": "4", "to": "#FASTING, #CANCER, #CANCER", "value": 4}, {"from": "#HEMP, #CANNABIS, #CBDOIL", "title": "1", "to": "#FASTINGSUMMIT, #FASTING, #CANCER", "value": 1}, {"from": "#HEMP, #CANNABIS, #CBDOIL", "title": "1", "to": "#WORLDWIDE, #CANCER, #CARRIBEAN", "value": 1}, {"from": "#HEMP, #CANNABIS, #CBDOIL", "title": "18", "to": "#CANCER, #CANNABIS, #CANNABIS", "value": 18}, {"from": "#HEMP, #CANNABIS, #CBDOIL", "title": "4", "to": "#CANNABIS, #CANCER, #CANCER", "value": 4}, {"from": "#HEMP, #CANNABIS, #CBDOIL", "title": "9", "to": "#CANCER, #CANNABIS, #CBD", "value": 9}, {"from": "#HEMP, #CANNABIS, #CBDOIL", "title": "7", "to": "#CANNABIS, #CANCER, #MARIJUANA", "value": 7}, {"from": "#CANCER, #SPORT, #SUN", "title": "9", "to": "#DIET, #CANCER, #FASTING", "value": 9}, {"from": "#CANCER, #SPORT, #SUN", "title": "8", "to": "#CANCER, #NUTRITION, #FASTING", "value": 8}, {"from": "#CANCER, #SPORT, #SUN", "title": "4", "to": "#IMMUNESYSTEM, #CANCER, #FASTING", "value": 4}, {"from": "#CANCER, #SPORT, #SUN", "title": "5", "to": "#CHEMO, #FASTING, #FASTING", "value": 5}, {"from": "#CANCER, #SPORT, #SUN", "title": "4", "to": "#FASTING, #CANCER, #CANCER", "value": 4}, {"from": "#CANCER, #SPORT, #SUN", "title": "2", "to": "#FASTINGSUMMIT, #FASTING, #CANCER", "value": 2}, {"from": "#CANCER, #SPORT, #SUN", "title": "1", "to": "#WORLDWIDE, #CANCER, #CARRIBEAN", "value": 1}, {"from": "#CANCER, #SPORT, #SUN", "title": "10", "to": "#CANCER, #CANNABIS, #CANNABIS", "value": 10}, {"from": "#CANCER, #SPORT, #SUN", "title": "4", "to": "#CANNABIS, #CANCER, #CANCER", "value": 4}, {"from": "#CANCER, #SPORT, #SUN", "title": "4", "to": "#CANCER, #CANNABIS, #CBD", "value": 4}, {"from": "#CANCER, #SPORT, #SUN", "title": "4", "to": "#CANNABIS, #CANCER, #MARIJUANA", "value": 4}, {"from": "#DIET, #CANCER, #FASTING", "title": "53", "to": "#CANCER, #NUTRITION, #FASTING", "value": 53}, {"from": "#DIET, #CANCER, #FASTING", "title": "21", "to": "#IMMUNESYSTEM, #CANCER, #FASTING", "value": 21}, {"from": "#DIET, #CANCER, #FASTING", "title": "16", "to": "#CHEMO, #FASTING, #FASTING", "value": 16}, {"from": "#DIET, #CANCER, #FASTING", "title": "9", "to": "#FASTING, #CANCER, #CANCER", "value": 9}, {"from": "#DIET, #CANCER, #FASTING", "title": "4", "to": "#FASTINGSUMMIT, #FASTING, #CANCER", "value": 4}, {"from": "#DIET, #CANCER, #FASTING", "title": "4", "to": "#WORLDWIDE, #CANCER, #CARRIBEAN", "value": 4}, {"from": "#DIET, #CANCER, #FASTING", "title": "33", "to": "#CANCER, #CANNABIS, #CANNABIS", "value": 33}, {"from": "#DIET, #CANCER, #FASTING", "title": "4", "to": "#CANNABIS, #CANCER, #CANCER", "value": 4}, {"from": "#DIET, #CANCER, #FASTING", "title": "5", "to": "#CANCER, #CANNABIS, #CBD", "value": 5}, {"from": "#DIET, #CANCER, #FASTING", "title": "4", "to": "#CANNABIS, #CANCER, #MARIJUANA", "value": 4}, {"from": "#CANCER, #NUTRITION, #FASTING", "title": "24", "to": "#IMMUNESYSTEM, #CANCER, #FASTING", "value": 24}, {"from": "#CANCER, #NUTRITION, #FASTING", "title": "15", "to": "#CHEMO, #FASTING, #FASTING", "value": 15}, {"from": "#CANCER, #NUTRITION, #FASTING", "title": "9", "to": "#FASTING, #CANCER, #CANCER", "value": 9}, {"from": "#CANCER, #NUTRITION, #FASTING", "title": "5", "to": "#FASTINGSUMMIT, #FASTING, #CANCER", "value": 5}, {"from": "#CANCER, #NUTRITION, #FASTING", "title": "7", "to": "#WORLDWIDE, #CANCER, #CARRIBEAN", "value": 7}, {"from": "#CANCER, #NUTRITION, #FASTING", "title": "24", "to": "#CANCER, #CANNABIS, #CANNABIS", "value": 24}, {"from": "#CANCER, #NUTRITION, #FASTING", "title": "4", "to": "#CANNABIS, #CANCER, #CANCER", "value": 4}, {"from": "#CANCER, #NUTRITION, #FASTING", "title": "5", "to": "#CANCER, #CANNABIS, #CBD", "value": 5}, {"from": "#CANCER, #NUTRITION, #FASTING", "title": "3", "to": "#CANNABIS, #CANCER, #MARIJUANA", "value": 3}, {"from": "#IMMUNESYSTEM, #CANCER, #FASTING", "title": "12", "to": "#CHEMO, #FASTING, #FASTING", "value": 12}, {"from": "#IMMUNESYSTEM, #CANCER, #FASTING", "title": "9", "to": "#FASTING, #CANCER, #CANCER", "value": 9}, {"from": "#IMMUNESYSTEM, #CANCER, #FASTING", "title": "4", "to": "#FASTINGSUMMIT, #FASTING, #CANCER", "value": 4}, {"from": "#IMMUNESYSTEM, #CANCER, #FASTING", "title": "4", "to": "#WORLDWIDE, #CANCER, #CARRIBEAN", "value": 4}, {"from": "#IMMUNESYSTEM, #CANCER, #FASTING", "title": "21", "to": "#CANCER, #CANNABIS, #CANNABIS", "value": 21}, {"from": "#IMMUNESYSTEM, #CANCER, #FASTING", "title": "5", "to": "#CANNABIS, #CANCER, #CANCER", "value": 5}, {"from": "#IMMUNESYSTEM, #CANCER, #FASTING", "title": "5", "to": "#CANCER, #CANNABIS, #CBD", "value": 5}, {"from": "#IMMUNESYSTEM, #CANCER, #FASTING", "title": "5", "to": "#CANNABIS, #CANCER, #MARIJUANA", "value": 5}, {"from": "#CHEMO, #FASTING, #FASTING", "title": "6", "to": "#FASTING, #CANCER, #CANCER", "value": 6}, {"from": "#CHEMO, #FASTING, #FASTING", "title": "4", "to": "#FASTINGSUMMIT, #FASTING, #CANCER", "value": 4}, {"from": "#CHEMO, #FASTING, #FASTING", "title": "3", "to": "#WORLDWIDE, #CANCER, #CARRIBEAN", "value": 3}, {"from": "#CHEMO, #FASTING, #FASTING", "title": "13", "to": "#CANCER, #CANNABIS, #CANNABIS", "value": 13}, {"from": "#CHEMO, #FASTING, #FASTING", "title": "4", "to": "#CANNABIS, #CANCER, #CANCER", "value": 4}, {"from": "#CHEMO, #FASTING, #FASTING", "title": "6", "to": "#CANCER, #CANNABIS, #CBD", "value": 6}, {"from": "#CHEMO, #FASTING, #FASTING", "title": "5", "to": "#CANNABIS, #CANCER, #MARIJUANA", "value": 5}, {"from": "#FASTING, #CANCER, #CANCER", "title": "4", "to": "#FASTINGSUMMIT, #FASTING, #CANCER", "value": 4}, {"from": "#FASTING, #CANCER, #CANCER", "title": "3", "to": "#WORLDWIDE, #CANCER, #CARRIBEAN", "value": 3}, {"from": "#FASTING, #CANCER, #CANCER", "title": "6", "to": "#CANCER, #CANNABIS, #CANNABIS", "value": 6}, {"from": "#FASTING, #CANCER, #CANCER", "title": "4", "to": "#CANNABIS, #CANCER, #CANCER", "value": 4}, {"from": "#FASTING, #CANCER, #CANCER", "title": "3", "to": "#CANCER, #CANNABIS, #CBD", "value": 3}, {"from": "#FASTING, #CANCER, #CANCER", "title": "3", "to": "#CANNABIS, #CANCER, #MARIJUANA", "value": 3}, {"from": "#FASTINGSUMMIT, #FASTING, #CANCER", "title": "2", "to": "#WORLDWIDE, #CANCER, #CARRIBEAN", "value": 2}, {"from": "#FASTINGSUMMIT, #FASTING, #CANCER", "title": "3", "to": "#CANCER, #CANNABIS, #CANNABIS", "value": 3}, {"from": "#FASTINGSUMMIT, #FASTING, #CANCER", "title": "2", "to": "#CANNABIS, #CANCER, #CANCER", "value": 2}, {"from": "#FASTINGSUMMIT, #FASTING, #CANCER", "title": "2", "to": "#CANCER, #CANNABIS, #CBD", "value": 2}, {"from": "#FASTINGSUMMIT, #FASTING, #CANCER", "title": "2", "to": "#CANNABIS, #CANCER, #MARIJUANA", "value": 2}, {"from": "#WORLDWIDE, #CANCER, #CARRIBEAN", "title": "7", "to": "#CANCER, #CANNABIS, #CANNABIS", "value": 7}, {"from": "#WORLDWIDE, #CANCER, #CARRIBEAN", "title": "1", "to": "#CANNABIS, #CANCER, #CANCER", "value": 1}, {"from": "#WORLDWIDE, #CANCER, #CARRIBEAN", "title": "2", "to": "#CANCER, #CANNABIS, #CBD", "value": 2}, {"from": "#WORLDWIDE, #CANCER, #CARRIBEAN", "title": "1", "to": "#CANNABIS, #CANCER, #MARIJUANA", "value": 1}, {"from": "#CANCER, #CANNABIS, #CANNABIS", "title": "7", "to": "#CANNABIS, #CANCER, #CANCER", "value": 7}, {"from": "#CANCER, #CANNABIS, #CANNABIS", "title": "37", "to": "#CANCER, #CANNABIS, #CBD", "value": 37}, {"from": "#CANCER, #CANNABIS, #CANNABIS", "title": "25", "to": "#CANNABIS, #CANCER, #MARIJUANA", "value": 25}, {"from": "#CANNABIS, #CANCER, #CANCER", "title": "6", "to": "#CANCER, #CANNABIS, #CBD", "value": 6}, {"from": "#CANNABIS, #CANCER, #CANCER", "title": "5", "to": "#CANNABIS, #CANCER, #MARIJUANA", "value": 5}, {"from": "#CANCER, #CANNABIS, #CBD", "title": "16", "to": "#CANNABIS, #CANCER, #MARIJUANA", "value": 16}]);
 
                   nodeColors = {};
                   allNodes = nodes.get({ returnType: "Object" });
@@ -544,6 +603,15 @@ function highlightFilter(filter) {
     },
     "physics": {
         "enabled": true,
+        "forceAtlas2Based": {
+            "avoidOverlap": 0,
+            "centralGravity": 0.01,
+            "damping": 0.4,
+            "gravitationalConstant": -50,
+            "springConstant": 0.08,
+            "springLength": 100
+        },
+        "solver": "forceAtlas2Based",
         "stabilization": {
             "enabled": true,
             "fit": true,
