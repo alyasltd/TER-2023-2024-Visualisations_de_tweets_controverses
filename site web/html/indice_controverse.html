@@ -253,7 +253,7 @@
   
         // Fonction pour charger les tweets depuis le fichier JSON
         function loadTweets() {
-            fetch('../../Donnees/Indice_Contro/data_readable.json')
+            fetch('../../Donnees/Indice_Contro/data_readable_simplified.json')
                 .then(response => response.json())
                 .then(data => {
                     tweets = data;
