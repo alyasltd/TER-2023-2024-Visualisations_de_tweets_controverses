@@ -1,0 +1,444 @@
+@font-face {
+  font-family: "Doctor Glitch";
+  src: url("./font/Doctor Glitch.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+header h1 {
+  font-family: "Doctor Glitch", sans-serif; /* Applique la police 'Doctor Glitch' au h1 */
+  font-size: 100px; /* Définit la taille de la police */
+  letter-spacing: 5px; /* Ajoute de l'espace entre les lettres */
+}
+
+#main-content {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 20px; /* Ajoute un espacement à droite */
+  padding-left: 20px; /* Ajoute un espacement à gauche */
+  max-width: 800px; /* Ajustez la largeur selon vos préférences */
+  margin: auto; /* Centre le contenu */
+  flex: 1;
+  min-width: 320px; /* Assure un minimum de largeur pour le texte sur petits écrans */
+}
+
+#main-content h2,
+#main-content h3 {
+  color: #322c2d; /* Couleur des titres, ajustez selon votre palette */
+}
+
+#main-content ul {
+  list-style-type: none; /* Enlève les puces */
+  padding: 0;
+}
+
+#main-content li {
+  margin-bottom: 10px; /* Espacement entre les liens */
+}
+
+#main-content a {
+  color: #f26522; /* Couleur des liens, ajustez selon votre palette */
+  text-decoration: none; /* Enlève le soulignement */
+}
+
+#main-content a:hover {
+  text-decoration: underline; /* Ajoute un soulignement au survol */
+}
+
+body,
+header,
+nav,
+a {
+  padding-bottom: 150px; /* Ajustez cette valeur en fonction de la hauteur de votre footer */
+  margin: 0;
+  padding: 0;
+  font-family: "Century Gothic", "CenturyGothic", "AppleGothic", sans-serif;
+  overflow-y: auto; /* Permet le défilement vertical */
+}
+
+header {
+  background-color: #322c2d; /* Couleur de fond */
+  color: #ffffff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+#navbar {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+#navbar a {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 5px; /* Arrondit les angles */
+  transition: background-color 0.3s; /* Transition douce */
+}
+
+#navbar a:hover {
+  background-color: #f26522; /* Couleur de fond au survol */
+}
+
+footer {
+  background-color: #f5f5f5;
+  color: black;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px 0;
+  padding-top: 20px;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px; /* Espacement entre les liens et le texte des droits */
+  font-size: 0.8em;
+}
+
+.footer-link,
+.footer-social {
+  color: black;
+  text-decoration: none;
+  margin: 0 10px; /* Espacement entre les icônes/liens */
+  display: inline-flex;
+  align-items: center;
+}
+
+.footer-link i,
+.footer-social i {
+  margin-right: 5px;
+}
+
+.footer-bottom {
+  font-size: 0.8em; /* Ajustez la taille de la police pour les droits d'auteur si nécessaire */
+}
+
+@media (max-width: 768px) {
+  .footer-top {
+    flex-direction: column;
+  }
+
+  .footer-link,
+  .footer-social {
+    margin: 5px 0; /* Ajustement pour les écrans plus petits */
+  }
+
+  .footer-bottom {
+    margin-top: 10px; /* Espacement entre les liens et le texte des droits pour les petits écrans */
+  }
+}
+
+.color-band {
+  display: flex;
+  height: 4px; /* Ajustez la hauteur de la bande de couleur selon vos besoins */
+}
+
+.color-block {
+  flex-grow: 1; /* Permet à chaque bloc de couleur de remplir un espace égal dans le conteneur */
+  width: 100%; /* Assure que chaque bloc de couleur s'étend pour remplir l'espace disponible */
+}
+
+#about-section {
+  padding: 20px;
+  max-width: 800px; /* Ajustez la largeur selon vos préférences */
+  margin: 40px auto; /* Centre le contenu et ajoute de l'espace au-dessus et en dessous */
+}
+
+#about-section h2 {
+  color: #322c2d; /* Couleur des titres, ajustez selon votre palette */
+  margin-bottom: 20px; /* Espacement sous le titre */
+}
+
+#about-section p {
+  text-align: justify; /* Justifie le texte des paragraphes */
+  margin-bottom: 15px; /* Espacement entre les paragraphes */
+}
+
+#miashs-members,
+#cno-members {
+  padding: 20px;
+  text-align: center; /* Centre le contenu */
+}
+
+.members-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centre les membres dans le conteneur */
+  gap: 20px; /* Ajoute un espace entre les membres */
+}
+
+.member {
+  width: 150px; /* Ajustez selon la taille souhaitée pour les photos */
+}
+
+.member img {
+  width: 100%; /* Assure que l'image remplit le conteneur */
+  border-radius: 50%; /* Rend les photos circulaires */
+  margin-bottom: 10px; /* Espacement entre la photo et le nom */
+}
+
+.member p {
+  margin: 0; /* Enlève l'espace par défaut autour des paragraphes */
+}
+
+* {
+  box-sizing: border-box;
+}
+.slideshow-container {
+  max-width: 100%;
+  position: relative;
+  margin: auto;
+  text-align: center; /* Centre le contenu à l'intérieur du container */
+}
+
+.mySlides {
+  opacity: 0;
+  transition: opacity 0s ease-in-out;
+}
+
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.8s;
+  animation-name: fade;
+  animation-duration: 1.8s;
+}
+
+@-webkit-keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.content-flex-container {
+  display: flex;
+  flex-direction: row; /* ou column, selon la disposition souhaitée */
+  align-items: center; /* Alignement vertical au centre */
+  justify-content: center; /* Alignement horizontal au centre, si nécessaire */
+  gap: 20px; /* Espace entre le texte et le slideshow */
+}
+
+#main-content,
+.slideshow-container {
+  /* S'assure que les deux éléments prennent l'espace nécessaire */
+  flex: 1;
+}
+
+.slideshow-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto; /* Ajuste la hauteur selon le contenu */
+}
+
+.mySlides {
+  display: none; /* Cache les slides initialement */
+  opacity: 0; /* Démarre avec une opacité de 0 */
+  transition: opacity 1s ease-in-out; /* Transition douce de l'opacité */
+  position: absolute; /* Permet aux slides de se superposer */
+  width: 100%;
+}
+
+.showSlide {
+  display: block; /* Affiche le slide */
+  opacity: 1; /* Fait apparaître le slide complètement */
+}
+
+.mySlides img {
+  max-height: 80vh; /* Ajustez selon l'espace disponible ou vos préférences */
+  max-width: 100%; /* Adaptation à la largeur du slide */
+  object-fit: contain;
+}
+
+#link_analyse {
+  display: flex;
+  align-items: center; /* Centre les éléments verticalement */
+  justify-content: center; /* Centre les éléments horizontalement dans leur conteneur */
+  gap: 10px; /* Ajoute un peu d'espace entre l'icône et le lien */
+  font-size: 0.8em; /* Rend le texte plus petit */
+}
+
+#link_analyse a {
+  color: #322c2d; /* Couleur du lien */
+  text-decoration: none; /* Enlève le soulignement du lien */
+  font-weight: bold; /* Met le texte du lien en gras */
+  font-size: 0.8em; /* Rend le texte plus petit */
+}
+
+#link_analyse a:hover {
+  color: #f26522; /* Change la couleur au survol */
+}
+
+#link_analyse i {
+  color: #322c2d; /* Couleur de l'icône */
+}
+
+#visualization-mosaic {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(250px, 1fr)
+  ); /* Ajustez '250px' à la taille fixe souhaitée pour vos carrés */
+  gap: 0; /* Aucun espace entre les carrés */
+}
+
+.mosaic-tile {
+  position: relative;
+  width: 250px; /* Largeur fixe pour chaque carré */
+  height: 250px; /* Hauteur fixe pour chaque carré pour en faire un carré parfait */
+  overflow: hidden; /* Cache tout débordement de contenu, ce qui permet aux images de s'adapter */
+  cursor: pointer;
+  display: flex; /* Centre le contenu de la tuile */
+  align-items: center; /* Alignement vertical */
+  justify-content: center; /* Alignement horizontal */
+}
+
+.mosaic-tile img {
+  width: 100%; /* Couvre la largeur du carré */
+  height: 100%; /* Couvre la hauteur du carré */
+  object-fit: cover; /* Assure que l'image couvre l'espace disponible sans déformer son rapport d'aspect */
+  transition: transform 0.5s ease; /* Animation de zoom léger */
+}
+
+.mosaic-tile:hover img {
+  transform: scale(1.1); /* Zoom léger sur l'image au survol */
+}
+
+.tile-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7); /* Fond semi-transparent */
+  color: white;
+  visibility: hidden; /* Cache initialement le texte */
+  opacity: 0;
+  transition: opacity 0.5s ease, visibility 0s 0.5s; /* Anime l'apparition du texte */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mosaic-tile:hover .tile-overlay {
+  visibility: visible; /* Affiche le texte au survol */
+  opacity: 1;
+  transition-delay: 0s; /* Apparaît immédiatement au survol */
+}
+
+.tile-description {
+  text-align: center;
+  padding: 15px; /* Espacement autour du texte */
+  font-size: 1em; /* Taille du texte */
+}
+
+#plotly-graph-container {
+  background: #ffffff; /* White background */
+  border: 2px solid #dee2e6; /* Light grey border for subtle definition */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  border-radius: 8px; /* Rounded corners for a smoother look */
+  overflow: hidden; /* Ensures no overflow from the iframe */
+  margin: 20px auto; /* Centers the container and adds vertical spacing */
+  padding: 20px; /* Padding around the iframe for white space */
+}
+
+iframe {
+  width: 100%; /* Full width to stretch within the container */
+  height: 500px; /* Fixed height, but you can adjust as necessary */
+  border: none; /* Removes the default iframe border */
+}
+
+#calendar-iframe {
+  width: 100%; /* Full width to stretch within the container */
+  height: 1500px; /* Fixed height, but you can adjust as necessary */
+  border: none; /* Removes the default iframe border */
+}
+
+svg {
+  display: block; /* Changes the SVG's display from inline to block */
+  margin: auto; /* Automatically calculates equal left and right margins to center the SVG */
+}
+#main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 10px; /* Reduced space between children */
+}
+
+#words-container {
+  display: block; /* Ensure it's a block container to properly contain the SVG */
+  width: 100%; /* Full width */
+  height: 100%; /* Full width */
+  max-width: 900px; /* Maximum width of the container; adjust as needed */
+  margin: 0 auto; /* Centering the container */
+}
+
+.svg-content-responsive {
+  display: block; /* SVG block display */
+  width: 100% !important; /* Full width */
+  height: auto !important; /* Height auto for aspect ratio */
+  /* Adjust viewBox settings in JS to control aspect ratio */
+}
+
+#button-container {
+  display: flex;
+  flex-wrap: wrap; /* Allows buttons to wrap onto the next line */
+  gap: 10px; /* Space between each button */
+  justify-content: center; /* Center the buttons container horizontally */
+}
+
+.node-button {
+  background-color: #322c2d; /* Button background color */
+  color: white; /* Button text color */
+  font-family: "Century Gothic", sans-serif; /* Gothic style font */
+  border-radius: 5px; /* Arrondit les angles */
+  padding: 10px;
+  box-sizing: border-box;
+  border: none; /* Remove border */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.node-button:hover {
+  background-color: #f26522; /* Button background color on hover */
+}
