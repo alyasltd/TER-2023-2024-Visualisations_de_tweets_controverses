@@ -4,10 +4,48 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" type="image/png" href="images/images.png" />
-
     <title>Tweets</title>
-
     <link rel="stylesheet" href="site.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif; /* Ajoutez une police de caractères générale */
+      }
+
+      .tableauPlaceholder {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .tableauViz {
+        width: 100%;
+        height: auto;
+        min-height: 400px;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      @media (max-width: 800px) {
+        .tableauViz {
+          height: 600px;
+        }
+        body {
+          font-size: 0.9em; /* Taille de police plus petite pour les petits écrans */
+        }
+      }
+
+      @media (max-width: 500px) {
+        .tableauViz {
+          height: 500px;
+        }
+        body {
+          font-size: 0.8em; /* Taille de police encore plus petite pour les très petits écrans */
+        }
+      }
+    </style>
   </head>
   <body>
     <link
@@ -32,20 +70,21 @@
       <li><a href="html/indice_controverse.html">Controversy Index</a></li>
       <li><a href="html/data.html">Our data</a></li>
 
-      <li style="float: right"><a href="html/contact.html">Contact</a></li>
     </ul>
-    <img id="paulva" src="images/upv-eps-converted-to.png" />
-    <img id="master" src="images/master.png" />
-    <img id="cnrs" src="images/LOGO_CNRS_2019_RVB.png" />
-    <img id="umontpellier" src="images/Logo_université_montpellier.png" />
-    <img id="janssen" src="images/janssen.png" />
-    <img id="lirmm" src="images/lirmm.png" />
+
+    <!-- Les images ont maintenant des styles responsives -->
+    <img id="paulva" src="images/upv-eps-converted-to.png" alt="Paul Va" />
+    <img id="master" src="images/master.png" alt="Master" />
+    <img id="cnrs" src="images/LOGO_CNRS_2019_RVB.png" alt="CNRS Logo" />
+    <img id="umontpellier" src="images/Logo_université_montpellier.png" alt="University of Montpellier Logo" />
+    <img id="janssen" src="images/janssen.png" alt="Janssen Logo" />
+    <img id="lirmm" src="images/lirmm.png" alt="LIRMM Logo" />
 
     <div class="tableauPlaceholder" id="viz1710697264959">
       <noscript
         ><a href="#"
           ><img
-            alt="Tableau de bord 2 "
+          alt="Tableau de bord 2 "
             src="https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ho&#47;houriaNUAGEDEMOT&#47;Tableaudebord2&#47;1_rss.png"
             style="border: none" /></a></noscript
       ><object class="tableauViz" style="display: none">
@@ -69,48 +108,47 @@
     </div>
     <script type="text/javascript">
       var divElement = document.getElementById("viz1710697264959");
-      var vizElement = divElement.getElementsByTagName("object")[0];
-      if (divElement.offsetWidth > 800) {
-        vizElement.style.width = "1200px";
-        vizElement.style.height = "827px";
-      } else if (divElement.offsetWidth > 500) {
-        vizElement.style.width = "1200px";
-        vizElement.style.height = "827px";
-      } else {
-        vizElement.style.width = "100%";
-        vizElement.style.height = "727px";
-      }
-      var scriptElement = document.createElement("script");
+var vizElement = divElement.getElementsByTagName("object")[0];
+
+if (divElement.offsetWidth > 1200) {
+  vizElement.style.width = "80vw";  // 80% de la largeur de la fenêtre
+  vizElement.style.height = "60vh"; // 60% de la hauteur de la fenêtre
+} else if (divElement.offsetWidth > 800) {
+  vizElement.style.width = "90vw";  // 90% de la largeur de la fenêtre
+  vizElement.style.height = "65vh"; // 65% de la hauteur de la fenêtre
+} else if (divElement.offsetWidth > 500) {
+  vizElement.style.width = "95vw";  // 95% de la largeur de la fenêtre
+  vizElement.style.height = "70vh"; // 70% de la hauteur de la fenêtre
+} else {
+  vizElement.style.width = "100%";  // 100% de la largeur du parent
+  vizElement.style.height = "75vh"; // 75% de la hauteur de la fenêtre
+}
+
+var scriptElement = document.createElement("script");
+
+// Ajoutez un écouteur d'événements pour redimensionner lors du changement de taille de la fenêtre
+window.addEventListener("resize", function() {
+  var width = divElement.offsetWidth;
+  if (width > 1200) {
+    vizElement.style.width = "80vw";
+    vizElement.style.height = "60vh";
+  } else if (width > 800) {
+    vizElement.style.width = "90vw";
+    vizElement.style.height = "65vh";
+  } else if (width > 500) {
+    vizElement.style.width = "95vw";
+    vizElement.style.height = "70vh";
+  } else {
+    vizElement.style.width = "100%";
+    vizElement.style.height = "75vh";
+  }
+});
+
       scriptElement.src =
         "https://public.tableau.com/javascripts/api/viz_v1.js";
       vizElement.parentNode.insertBefore(scriptElement, vizElement);
     </script>
+    
 
-    <section class="mt-10">
-      <!-- Footer -->
-      <footer class="bg-black text-white text-center py-6">
-        <!-- Grid container -->
-        <div class="container px-4">
-          <!-- Section: CTA -->
-          <section></section>
-          <!-- Section: CTA -->
-        </div>
-        <!-- Grid container -->
-        <div
-          class="text-center pt-3 pb-6"
-          style="background-color: black; height: 5%"
-        >
-          <a href="html/contact.html" class="text-white mr-4">À propos</a>
-          <a href="#" class="text-white mr-4">Conditions d'utilisation</a>
-          <a href="#" class="text-white">Politique de confidentialité</a>
-          <a
-            href="https://github.com/alyasltd/TER-2023-2024-Visualisations_de_tweets_controverses.git"
-            class="text-white"
-            >Git Hub</a
-          >
-        </div>
-      </footer>
-      <!-- Footer -->
-    </section>
   </body>
 </html>
