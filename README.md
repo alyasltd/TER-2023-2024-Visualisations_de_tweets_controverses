@@ -20,10 +20,15 @@ This project delves into the controversies that emerge on Twitter around health-
 - **Sentiment and Emotion Visualization**:
   - Using the **RoBERTa pre-trained model from Hugging Face** for sentiment analysis on tweets. This model, based on BERT, classifies tweets into positive, negative, or neutral sentiments 🌈🧠.
   - **t-SNE (t-Distributed Stochastic Neighbor Embedding)**: A dimensionality reduction technique to visualize sentiment clusters (positive, negative, neutral) and their relationships 🌍💥.
+    ![Sentiment Analysis](sentiment_analysis.png)
     
 ### 3. **Topic Modeling**  
 - **Latent Dirichlet Allocation (LDA)**: This model identified the dominant topics in the tweets, highlighting subjects like the medical benefits of cannabis and exercise in cancer treatment 🌱🏃‍♀️.
+  ![LDA](lda.png)
+
 - **Clustering**: We applied **KMeans** and **Force Atlas** algorithms to group Twitter communities based on shared hashtags, visualizing the connections between different discussions on controversial topics 🤝🔗.
+![Clustering](clustering_hashtags.png)
+
 
 ### 4. **Controversy Index**  
 - A **controversy index** was created by considering factors like retweets, likes, and sentiment polarity. This score quantifies the intensity of controversy around certain tweets and hashtags, identifying the most polarizing discussions 🔥💬.
